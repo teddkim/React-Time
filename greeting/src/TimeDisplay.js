@@ -1,4 +1,5 @@
 import React from 'react'
+import './TimeDisplay.css'
 
 const timeConfig = {
   morning: {
