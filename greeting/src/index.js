@@ -1,12 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import TimeDisplay from './TimeDisplay'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class App extends React.Component {
+  state = {time: new Date().toLocaleTimeString(), hour: new Date().getHours() };
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({ time: new Date().toLocaleTimeString() })
+    }, 1000)
+  }
+
+  renderContent() {
+    return <TimeDisplay hour={this.state.hour} />;
+  }
+  
+  render () {
+    return <div>{this.renderContent()}</div>;
+  }
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'))
